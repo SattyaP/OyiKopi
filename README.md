@@ -1,80 +1,153 @@
-☕ Sistem Rekomendasi Warung Kopi di Malang
-Proyek ini adalah sistem rekomendasi berbasis Machine Learning (Content-Based Filtering) yang dirancang untuk membantu mahasiswa, pekerja remote, dan penikmat kopi di Kota Malang menemukan tempat yang paling sesuai dengan kebutuhan spesifik mereka.
+# ☕ Sistem Rekomendasi Warung Kopi di Malang
 
-Sistem ini tidak hanya merekomendasikan berdasarkan rating bintang, tetapi memahami konteks "Vibe" (suasana) melalui pemrosesan bahasa alami (Natural Language Processing) dari ulasan pengunjung.
+Proyek ini merupakan **sistem rekomendasi berbasis Machine Learning (Content-Based Filtering)** yang dirancang untuk membantu **mahasiswa, pekerja remote, dan penikmat kopi** di Kota Malang menemukan warung kopi yang paling sesuai dengan **kebutuhan dan preferensi spesifik** mereka.
 
-🚀 Fitur Utama
-Smart Search (NLP): Cari tempat dengan kalimat manusiawi.
+Berbeda dari sistem rekomendasi konvensional yang hanya mengandalkan **rating bintang**, sistem ini memahami **“vibe” atau suasana tempat** melalui **Natural Language Processing (NLP)** pada ulasan asli pengunjung Google Maps.
 
-Contoh: "Tempat sepi buat skripsi wifi kencang" atau "Cafe aesthetic buat foto instagram".
+---
 
-Analisis Sentimen "Vibe": Menggunakan algoritma TF-IDF dan Cosine Similarity untuk mencocokkan query pengguna dengan ribuan ulasan asli.
+## 🚀 Fitur Utama
 
-Quick Chips: Tombol cepat untuk kategori populer (Nugas, Aesthetic, Nongkrong Santai).
+### 🔍 Smart Search (NLP-Based)
+Pencarian menggunakan **kalimat alami seperti manusia**.
 
-Informasi Lengkap: Menampilkan Nama, Alamat, Rating Google, Cuplikan Review Relevan, dan Link Google Maps.
+Contoh:
+- `Tempat sepi buat skripsi wifi kencang`
+- `Cafe aesthetic buat foto instagram`
 
-UI Modern: Antarmuka responsif berbasis Grid yang dibangun dengan Streamlit.
+### 🧠 Analisis Vibe Berbasis Review
+- Menggunakan **TF-IDF Vectorizer** dan **Cosine Similarity**
+- Mencocokkan preferensi pengguna dengan **ribuan ulasan asli**
 
-🛠️ Teknologi yang Digunakan
-Bahasa Pemrograman: Python 3.10+
+### ⚡ Quick Chips
+Tombol cepat untuk kategori populer:
+- 💻 Nugas / WFC
+- 📸 Aesthetic
+- ☕ Nongkrong Santai
 
-Web Framework: Streamlit
+### 📍 Informasi Lengkap
+Setiap rekomendasi menampilkan:
+- Nama Kafe
+- Alamat
+- Rating Google
+- Cuplikan Review Relevan
+- Link Google Maps
 
-Data Processing: Pandas, NumPy
+### 🎨 UI Modern & Responsif
+- Dibangun dengan **Streamlit**
+- Layout berbasis **Grid Card**
+- Tampilan konsisten di desktop dan mobile
 
-Machine Learning: Scikit-Learn (TF-IDF Vectorizer, Cosine Similarity)
+---
 
-Natural Language Processing (NLP): Sastrawi (Stemming Bahasa Indonesia)
+## 🛠️ Teknologi yang Digunakan
 
-Data Source: Google Maps Reviews (Scraped Data)
+| Kategori | Teknologi |
+|--------|----------|
+| Bahasa Pemrograman | Python 3.10+ |
+| Web Framework | Streamlit |
+| Data Processing | Pandas, NumPy |
+| Machine Learning | Scikit-Learn (TF-IDF, Cosine Similarity) |
+| NLP Bahasa Indonesia | Sastrawi (Stemming) |
+| Data Source | Google Maps Reviews (Scraped Data) |
+| Web Scraping | Puppeteer (Node.js) |
 
-📂 Struktur Proyek
+---
+
+## 📂 Struktur Proyek
+
+```text
 📁 OyiKopi/
-├── 📁 data_mentah
-├──── 📄 List_Kafe_Malang_Lengkap.xlsx # Result Scrapper
-├── 📄 app.py                   # Main Application (UI & Logic)
-├── 📄 dataset_kafe_final.csv   # Dataset hasil cleaning & preprocessing
-├── 📄 requirements.txt         # Daftar library dependency
-├── 📄 preprocessing.py         # (Opsional) Script pembersih data mentah
-└── 📄 README.md                # Dokumentasi Proyek
-└── 📄 scraper.js               # Puppeteer Scrapper Map
+├── 📁 data_mentah/
+│   └── 📄 List_Kafe_Malang_Lengkap.xlsx   # Data hasil scraping Google Maps
+├── 📄 app.py                             # Aplikasi utama (UI & Logic)
+├── 📄 dataset_kafe_final.csv             # Dataset hasil preprocessing
+├── 📄 preprocessing.py                   # Script preprocessing data (opsional)
+├── 📄 scraper.js                         # Puppeteer Google Maps Scraper
+├── 📄 requirements.txt                   # Dependency Python
+├── 📄 package.json                       # Dependency Node.js (Scraper)
+└── 📄 README.md                          # Dokumentasi proyek
+```
 
-💻 Cara Menjalankan Program
-Ikuti langkah-langkah berikut untuk menjalankan aplikasi di komputer lokal:
+## 💻 Cara Menjalankan Program
 
-1. Persiapan Lingkungan
-Pastikan Python sudah terinstall. Sangat disarankan menggunakan Virtual Environment.
+### 1️⃣ Persiapan Lingkungan
 
-Bash
+Pastikan **Python 3.10+** dan **Node.js** sudah terinstall di sistem Anda.  
+Sangat disarankan menggunakan **Virtual Environment** untuk menjaga isolasi dependensi.
 
-# Clone atau download folder ini
-# Masuk ke direktori
+```bash
+# Masuk ke direktori proyek
 cd OyiKopi
-2. Install Library
-Install semua dependensi yang dibutuhkan secara otomatis:
+2️⃣ Install Dependency
+Python
 
-Bash
+Install seluruh library Python yang dibutuhkan:
 
 pip install -r requirements.txt
-npm install
-3. Jalankan Aplikasi
-Ketik perintah berikut di terminal:
 
-Bash
+Node.js (Scraper)
+
+Install dependency untuk Puppeteer scraper:
+
+npm install
+
+3️⃣ Jalankan Aplikasi
+
+Jalankan aplikasi Streamlit dengan perintah berikut:
 
 streamlit run app.py
-Aplikasi akan otomatis terbuka di browser Anda (biasanya di alamat http://localhost:8501).
 
-🧠 Cara Kerja Model
-Input: Pengguna memasukkan kalimat preferensi.
 
-Preprocessing: Sistem membersihkan input (menghapus tanda baca, stopword removal, dan melakukan stemming kata dasar bahasa Indonesia).
+Aplikasi akan terbuka otomatis di browser pada alamat:
 
-Vectorization: Mengubah teks input menjadi vektor angka menggunakan bobot TF-IDF yang telah dilatih dengan data ulasan kafe.
+http://localhost:8501
+```
 
-Similarity Check: Menghitung jarak kedekatan (Cosine Similarity) antara vektor input pengguna dengan vektor setiap kafe.
+## 🧠 Cara Kerja Model Rekomendasi
 
-Ranking: Menampilkan kafe dengan skor kemiripan tertinggi.
+### 1. Input
+Pengguna memasukkan **kalimat preferensi bebas (free text)**.
 
-Dibuat oleh: Tim OYIKOPI UBHINUS MALANG
+**Contoh:**
+- `tempat sepi buat skripsi`
+- `cafe aesthetic buat foto`
+
+---
+
+### 2. Preprocessing
+Tahapan pembersihan teks meliputi:
+- Case folding (mengubah teks menjadi huruf kecil)
+- Menghapus simbol dan tanda baca
+- Stemming Bahasa Indonesia menggunakan **Sastrawi**
+
+---
+
+### 3. Vectorization
+Teks yang telah diproses diubah menjadi vektor numerik menggunakan:
+- **TF-IDF (Term Frequency – Inverse Document Frequency)**
+
+---
+
+### 4. Similarity Measurement
+Menghitung tingkat kemiripan antara:
+- Query pengguna
+- Data ulasan kafe  
+
+Menggunakan metode **Cosine Similarity**.
+
+---
+
+### 5. Ranking
+Kafe diurutkan berdasarkan:
+- Skor kemiripan tertinggi  
+
+Hasil terbaik ditampilkan sebagai **rekomendasi utama**.
+
+---
+
+## 👨‍💻 Tim Pengembang
+
+**Tim OYIKOPI**  
+Universitas Bhinus Malang
+
